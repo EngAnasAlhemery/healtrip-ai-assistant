@@ -5,6 +5,7 @@ import { groqClient } from "./groq.client.js";
 import { buildPatientAssistantPrompt } from "./patient-assistant.prompt.js";
 import { providerSearchTool } from "./provider.tool.js";
 import { assistantOutputSchema } from "./patient-assistant.output.js";
+import { resolveVerifiedProviders } from "./provider-grounding.js";
 
 // Bound model requests and local tool execution per chat turn.
 const MAX_MODEL_REQUESTS = 3;
@@ -127,20 +128,11 @@ export async function runPatientAssistant(request: ChatRequest) {
     // Validate both JSON syntax and the expected decision structure.
     const output = assistantOutputSchema.parse(JSON.parse(reply));
 
-    if (new Set(output.providerIds).size !== output.providerIds.length) {
-      throw new Error("The assistant returned duplicate provider IDs.");
-    }
-
-    // Resolve IDs exclusively against the latest actual search results.
-    const verifiedProviders = output.providerIds.map((id) => {
-      const match = providers.find((item) => item.doctor.id === id);
-
-      if (!match) {
-        throw new Error("The assistant selected an unverified provider.");
-      }
-
-      return match;
-    });
+        // Verify selected IDs using the same function covered by our tests.
+    const verifiedProviders = resolveVerifiedProviders(
+      output.providerIds,
+      providers,
+    );
 
     if (
       ["emergency", "clarify", "no_match"].includes(output.nextStep) &&

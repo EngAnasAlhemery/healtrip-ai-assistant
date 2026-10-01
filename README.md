@@ -249,6 +249,26 @@ For active development, use `dev`.
 On environments without the PowerShell script restriction, `npm` can be used
 instead of `npm.cmd`.
 
+## Automated Provider-Grounding Tests
+
+Run from `backend`:
+
+```powershell
+npm.cmd test
+```
+
+Six tests cover:
+
+- Accepting a doctor returned by the current search
+- Rejecting an invented doctor ID
+- Rejecting an existing doctor outside the current search results
+- Rejecting duplicate IDs
+- Accepting an empty selection with empty results
+- Rejecting a selected doctor when no search records are available
+
+These tests exercise the same provider-resolution function used by the agent.
+They validate provider grounding, not medical correctness.
+
 ## Manual Validation
 
 Observed during local testing:
@@ -289,7 +309,8 @@ These are observed examples, not a comprehensive clinical or reliability evaluat
 - The in-memory rate limiter resets on restart and is not shared across servers.
 - Free-tier AI quotas can interrupt demonstrations.
 - Browser timeout does not guarantee cancellation of backend model processing.
-- Live scenarios were tested manually; broader automated regression tests remain.
+- Provider grounding has six automated tests. Live conversation scenarios were
+  tested manually; broader automated regression tests remain.
 - Production deployment requires HTTPS, correct API routing, and a carefully
   configured proxy trust boundary.
 - A future PostgreSQL implementation would use a hospital foreign key,
