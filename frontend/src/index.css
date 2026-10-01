@@ -1,0 +1,34 @@
+/* Apply consistent sizing and remove the default Vite layout. */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: #f3f6fa;
+  color: #172b42;
+  font-family: Arial, Tahoma, sans-serif;
+}
+
+button,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Keep keyboard focus visible. */
+button:focus-visible,
+textarea:focus-visible,
+summary:focus-visible {
+  outline: 3px solid #3385ce;
+  outline-offset: 3px;
+}

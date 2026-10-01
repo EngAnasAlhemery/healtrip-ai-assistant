@@ -1,0 +1,13 @@
+# Ignore installed dependencies and compiled output.
+node_modules/
+dist/
+
+# Keep local environment files and secrets out of Git.
+.env
+.env.*
+
+# Allow a safe configuration template to be committed.
+!.env.example
+
+# Ignore runtime logs.
+*.log

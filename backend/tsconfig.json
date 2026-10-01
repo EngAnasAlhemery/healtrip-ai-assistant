@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    // Compile for a modern Node.js runtime.
+    "target": "ES2022",
+
+    // Use Node.js rules for modules and import resolution.
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+
+    // Keep source code and compiled output in separate folders.
+    "rootDir": "./src",
+    "outDir": "./dist",
+
+    // Enable strict checks to catch type errors during development.
+    "strict": true,
+
+    // Allow compatible imports from CommonJS packages such as Express.
+    "esModuleInterop": true,
+
+    // Skip checking dependency declaration files.
+    "skipLibCheck": true,
+
+    // Include Node.js types, such as process and environment variables.
+    "types": ["node"],
+
+    // Prevent generating JavaScript when type errors exist.
+    "noEmitOnError": true
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules", "dist"]
+}

@@ -1,0 +1,163 @@
+/* Center the application while allowing narrow screens. */
+.app {
+  width: min(900px, 100%);
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.controls {
+  display: flex;
+  gap: 8px;
+}
+
+button {
+  padding: 10px 16px;
+  border: 1px solid #c4d1df;
+  border-radius: 8px;
+  background: white;
+  color: #172b42;
+}
+
+.notice {
+  padding: 14px;
+  border: 1px solid #e2ca85;
+  border-radius: 10px;
+  background: #fff8e5;
+  line-height: 1.7;
+}
+
+/* Keep long conversations scrollable. */
+.messages {
+  height: 52vh;
+  min-height: 260px;
+  overflow-y: auto;
+  padding: 16px;
+  border: 1px solid #d9e2ec;
+  border-radius: 12px;
+  background: white;
+}
+
+.message {
+  width: fit-content;
+  max-width: 90%;
+  margin-block-end: 16px;
+  padding: 14px;
+  border-radius: 12px;
+  overflow-wrap: anywhere;
+}
+
+/* Logical margins follow the interface direction in Arabic and English. */
+.message.user {
+  margin-inline-start: auto;
+  background: #e0efff;
+}
+
+.message.assistant {
+  margin-inline-end: auto;
+  background: #f0f3f7;
+}
+
+.message-text {
+  margin: 0;
+  white-space: pre-wrap;
+  line-height: 1.7;
+}
+
+.decision {
+  display: block;
+  margin-block-start: 10px;
+  color: #526479;
+}
+
+.provider {
+  margin-block-start: 12px;
+  padding: 12px;
+  border: 1px solid #bdccdc;
+  border-radius: 8px;
+  background: white;
+}
+
+.provider h3 {
+  margin: 8px 0;
+  font-size: 17px;
+}
+
+.provider p {
+  margin: 6px 0;
+  line-height: 1.6;
+}
+
+.trace {
+  margin-block-start: 12px;
+  font-size: 13px;
+}
+
+.trace summary {
+  cursor: pointer;
+}
+
+.error {
+  padding: 12px;
+  border: 1px solid #e0a6a6;
+  border-radius: 8px;
+  background: #fff0f0;
+  color: #842525;
+  line-height: 1.6;
+}
+
+.composer {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+  margin-block-start: 16px;
+}
+
+.composer textarea {
+  flex: 1;
+  min-width: 0;
+  resize: vertical;
+  padding: 12px;
+  border: 1px solid #bdccdc;
+  border-radius: 8px;
+  background: white;
+  color: #172b42;
+  line-height: 1.6;
+}
+
+.composer button {
+  background: #175c9b;
+  color: white;
+  border-color: #175c9b;
+}
+
+/* Stack the input and send button on mobile. */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 20px;
+  }
+
+  .message {
+    max-width: 100%;
+  }
+
+  .composer {
+    flex-direction: column;
+  }
+
+  .messages {
+    height: 48vh;
+  }
+}

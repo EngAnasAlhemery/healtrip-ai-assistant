@@ -1,0 +1,13 @@
+# Ignore dependencies and generated build output in all project folders.
+node_modules/
+dist/
+*.tsbuildinfo
+
+# Never commit local environment files or secrets.
+.env
+.env.*
+!.env.example
+
+# Ignore logs and local editor settings.
+*.log
+.vscode/
